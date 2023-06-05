@@ -67,11 +67,15 @@ button:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.buttons button:visited {
+.btn.active {
     background-color: var(--text-color);
     color: white;
 }
 
+input {
+    font-size: 14px;
+    width: 60%;
+}
 
 .board {
     width: 600px;

@@ -1,8 +1,7 @@
+const buttons = document.querySelectorAll(".btn");
+
 let color = "black";
 let click = true;
-
-let button = document.querySelectorAll(".btn");
-
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
@@ -20,6 +19,7 @@ function populateBoard(size) {
     square.addEventListener("mousedown", colorSquare);
     square.addEventListener("mouseover", colorSquare);
     square.style.backgroundColor = "white";
+    square.style.border = "0.2px solid black";
     board.insertAdjacentElement("beforeend", square);
   }
 }
@@ -61,3 +61,15 @@ function resetBoard() {
   let squares = board.querySelectorAll("div");
   squares.forEach((div) => (div.style.backgroundColor = "white"));
 }
+
+// Define the click event handler function
+function handleClick(event) {
+  // Remove the class from all buttons
+  buttons.forEach((button) => button.classList.remove("active"));
+
+  // Add the class to the clicked button
+  event.target.classList.add("active");
+}
+
+// Attach the click event listener to each button
+buttons.forEach((button) => button.addEventListener("click", handleClick));
