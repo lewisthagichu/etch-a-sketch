@@ -9,25 +9,26 @@
     <title>Etch A Sketch</title>
 </head>
 <body>
-    <main class="flex-container">
-        <div class="title">
-            <h1>Etch-A-Sketch</h1>
-        </div>
-        <div class="mode"></div>
+    <header class="header">
+        <h1 class="title">Etch-A-Sketch</h1>        
+    </header>    
 
-        <div class="content">
-            <div class="board"></div>
+    <main class="flex-container">
+        <div class="config">
             <div class="buttons">
-                <button onclick="changeColor('black')">Black</button>
-                <button onclick="changeColor('grey')">Grey</button>
-                <button onclick="changeColor('blue')">Erasor</button>
-                <button onclick="changeColor('rainbow')">Rainbow</button>
-                <button onclick="resetBoard()">Reset</button>
+                <button class="btn" onclick="changeColor('black')">Black</button>
+                <button class="btn" onclick="changeColor('grey')">Grey</button>
+                <button class="btn" onclick="changeColor('white')">Erasor</button>
+                <button class="btn" onclick="changeColor('rainbow')">Rainbow</button>
+                <button class="btn" onclick="resetBoard()">Reset</button>
             </div>
             <div>
                 <input type="text" placeholder="Size of Board" value="16" onchange="changeSize(this.value)"/>
                 <button>Set size</button>
             </div>
+        </div>
+        <div class="content">
+            <div class="board"></div>           
         </div>
     </main>
     <footer class="footer">

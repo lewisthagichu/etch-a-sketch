@@ -1,6 +1,8 @@
 let color = "black";
 let click = true;
 
+let button = document.querySelectorAll(".btn");
+
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
@@ -17,7 +19,7 @@ function populateBoard(size) {
     let square = document.createElement("div");
     square.addEventListener("mousedown", colorSquare);
     square.addEventListener("mouseover", colorSquare);
-    square.style.backgroundColor = "blue";
+    square.style.backgroundColor = "white";
     board.insertAdjacentElement("beforeend", square);
   }
 }
@@ -57,5 +59,5 @@ function changeColor(choice) {
 function resetBoard() {
   let board = document.querySelector(".board");
   let squares = board.querySelectorAll("div");
-  squares.forEach((div) => (div.style.backgroundColor = "blue"));
+  squares.forEach((div) => (div.style.backgroundColor = "white"));
 }
