@@ -9,26 +9,39 @@
     <title>Etch A Sketch</title>
 </head>
 <body>
-    <div class="flex-container">
+    <main class="flex-container">
         <div class="title">
             <h1>Etch-A-Sketch</h1>
         </div>
+        <div class="mode"></div>
 
         <div class="content">
             <div class="board"></div>
             <div class="buttons">
-                <button>Black</button>
-                <button>White</button>
-                <button>Random</button>
-                <button>Reset</button>
+                <button onclick="changeColor('black')">Black</button>
+                <button onclick="changeColor('grey')">Grey</button>
+                <button onclick="changeColor('blue')">Erasor</button>
+                <button onclick="changeColor('rainbow')">Rainbow</button>
+                <button onclick="resetBoard()">Reset</button>
             </div>
             <div>
-                <input type="text" placeholder="Size of Board" value="16">
+                <input type="text" placeholder="Size of Board" value="16" onchange="changeSize(this.value)"/>
                 <button>Set size</button>
             </div>
         </div>
-    </div>
-
+    </main>
+    <footer class="footer">
+        <p>
+          Copyright ©
+          <script>
+            document.write(new Date().getFullYear())
+          </script>
+          lewisthagichu
+        </p>
+        <a href="https://github.com/lewisthagichu" target="_blank">
+          <i class="fab fa-github"></i
+        ></a>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>
