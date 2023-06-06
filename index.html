@@ -18,13 +18,13 @@
             <div class="buttons">
                 <button class="btn" onclick="changeColor('black')">Black</button>
                 <button class="btn" onclick="changeColor('grey')">Grey</button>
-                <button class="btn" onclick="changeColor('white')">Erasor</button>
+                <button class="btn" onclick="changeColor('#ffffff')">Eraser</button>
                 <button class="btn" onclick="changeColor('rainbow')">Rainbow</button>
                 <button onclick="resetBoard()">Reset</button>
             </div>
-            <div>
-                <input type="text" placeholder="Size of Board" value="16" onchange="changeSize(this.value)"/>
-                <button>Set size</button>
+            <div class="slider-section">
+                <div id="sizeValue" class="size-value">Grid size: 16 x 16</div>
+                <input id="slider" type="range" value="16" min="1" max="100"/>
             </div>
         </div>
         <div class="content">

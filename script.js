@@ -1,4 +1,24 @@
+// const DEFAULT_COLOR = "#ffffff";
+const DEFAULT_SIZE = 16;
+
+let currentSize = DEFAULT_SIZE;
+// let currentColor = DEFAULT_COLOR;
+
 const buttons = document.querySelectorAll(".btn");
+const slider = document.getElementById("slider");
+const sizeValue = document.getElementById("sizeValue");
+
+slider.onmousemove = (e) => {
+  updateSizeValue(e.target.value);
+};
+slider.onchange = (e) => {
+  changeSize(e.target.value);
+};
+
+//function to set new board size
+function setCurrentSize(newSize) {
+  currentSize = newSize;
+}
 
 let color = "black";
 let click = true;
@@ -24,15 +44,20 @@ function populateBoard(size) {
   }
 }
 
-populateBoard(16);
+// function to reload the board
+function reloadBoard() {
+  populateBoard(currentSize);
+}
+
+//function to update the sizeValue div
+function updateSizeValue(value) {
+  sizeValue.innerHTML = `Grid size: ${value} x ${value}`;
+}
 
 //function to adjust number of squares
-function changeSize(input) {
-  if (input >= 2 || input <= 100) {
-    populateBoard(input);
-  } else {
-    console.log("Invalid input");
-  }
+function changeSize(value) {
+  setCurrentSize(value);
+  reloadBoard();
 }
 
 //function to determine color of each square
@@ -73,3 +98,7 @@ function handleClick(event) {
 
 // Attach the click event listener to each button
 buttons.forEach((button) => button.addEventListener("click", handleClick));
+
+window.onload = () => {
+  populateBoard(currentSize);
+};

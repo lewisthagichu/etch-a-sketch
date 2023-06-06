@@ -1,6 +1,7 @@
 :root {
     --bg-color: #DEE7E7;
     --text-color: #3F3F37;
+    --secondary-bg-color: #EBE9E9;
 }
 
 * {
@@ -72,10 +73,33 @@ button:hover {
     color: white;
 }
 
-input {
-    font-size: 14px;
-    width: 60%;
+.slider-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
 }
+
+input[type='range'] {
+    background-color: var(--secondary-bg-color);
+  }
+  
+input[type='range']::-webkit-slider-runnable-track {
+    height:10px;
+    border: 1px solid black;
+    border-radius: 25px;
+    background: var(--secondary-bg-color);
+}
+  
+input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 25px;
+    margin-top: -4px;
+    background: var(--bg-color);
+}  
 
 .board {
     width: 600px;
