@@ -10,8 +10,7 @@
 }
 
 html {
-    position: relative;
-    
+    position: relative;    
 }
 
 .header {
@@ -68,17 +67,49 @@ button:hover {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
+.input-box {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    border: none;
+}
+
+.input-box span {
+    padding-left: 1.2rem;
+    color: var(--text-color);
+    font-size: 20px;
+}
+
+input[type="color"] {
+    /* -webkit-appearance: none; */
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 50%;
+}
+
+input[type='color']::-webkit-color-swatch-wrapper {
+    padding: 0;
+    border: none;
+}
+
+input[type='color']::-webkit-color-swatch {
+    border: none;
+    border-radius: 50px;
+    /* box-shadow: rgba(244, 243, 244, 0.24) 0px 3px 8px; */
+}  
+
 .btn.active {
     background-color: var(--text-color);
     color: white;
 }
 
-.slider-section {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+.size-value {
+    text-align: center;
+}
+
+#slider {
+    width: 100%;
 }
 
 input[type='range'] {
@@ -93,12 +124,12 @@ input[type='range']::-webkit-slider-runnable-track {
 }
   
 input[type='range']::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 30px;
-    height: 30px;
-    border-radius: 25px;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
     margin-top: -4px;
-    background: var(--bg-color);
+    background: var(--text-color);
 }  
 
 .board {

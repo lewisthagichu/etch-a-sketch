@@ -1,12 +1,18 @@
-// const DEFAULT_COLOR = "#ffffff";
+const DEFAULT_BG_COLOR = "#FFFFFF";
+const DEFAULT_COLOR = "#333333";
 const DEFAULT_SIZE = 16;
 
 let currentSize = DEFAULT_SIZE;
-// let currentColor = DEFAULT_COLOR;
+let currentColor = DEFAULT_COLOR;
+let bgColor = DEFAULT_BG_COLOR;
 
 const buttons = document.querySelectorAll(".btn");
 const slider = document.getElementById("slider");
 const sizeValue = document.getElementById("sizeValue");
+const colorPicker = document.getElementById("colorPicker");
+const bgColorPicker = document.getElementById("bgColorPicker");
+const rainbowBtn = document.getElementById("rainbowBtn");
+const eraserBtn = document.getElementById("eraserBtn");
 
 slider.onmousemove = (e) => {
   updateSizeValue(e.target.value);
@@ -14,14 +20,24 @@ slider.onmousemove = (e) => {
 slider.onchange = (e) => {
   changeSize(e.target.value);
 };
+colorPicker.oninput = (e) => {
+  changeColor(e.target.value);
+};
+bgColorPicker.oninput = (e) => {
+  setBackgroundColor(e.target.value);
+};
+rainbowBtn.onclick = () => {
+  changeColor("rainbow");
+};
+eraserBtn.onclick = () => {
+  changeColor("#ffffff");
+};
 
 //function to set new board size
 function setCurrentSize(newSize) {
   currentSize = newSize;
 }
 
-let color = "black";
-let click = true;
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
@@ -38,8 +54,8 @@ function populateBoard(size) {
     let square = document.createElement("div");
     square.addEventListener("mousedown", colorSquare);
     square.addEventListener("mouseover", colorSquare);
-    square.style.backgroundColor = "white";
-    square.style.border = "0.2px solid black";
+    square.style.backgroundColor = bgColor;
+    // square.style.border = "0.2px solid black";
     board.insertAdjacentElement("beforeend", square);
   }
 }
@@ -68,16 +84,22 @@ function colorSquare(e) {
     e.preventDefault();
   }
 
-  if (color == "rainbow") {
+  if (currentColor == "rainbow") {
     this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
   } else {
-    this.style.backgroundColor = color;
+    this.style.backgroundColor = currentColor;
   }
 }
 
 //function to change color of squares
 function changeColor(choice) {
-  color = choice;
+  currentColor = choice;
+}
+
+//function to set background color
+function setBackgroundColor(choice) {
+  bgColor = choice;
+  reloadBoard();
 }
 
 //function to reset board
