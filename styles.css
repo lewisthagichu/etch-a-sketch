@@ -2,6 +2,7 @@
     --bg-color: #DEE7E7;
     --text-color: #3F3F37;
     --secondary-bg-color: #EBE9E9;
+    --text-color2: #EBF7FF;
 }
 
 * {
@@ -22,13 +23,14 @@ html {
 .title {
     text-align: center;
     padding: 2.6rem;
-    font-size: 50px;
-    color: var(--text-color);
+    font-size: 60px;
+    color: linear-gradient(to right, #ECD583, #DEE7E7);
     font-weight: 900;
 }
 
 body {
-    background: var(--bg-color);
+    
+    background: #4F5453;
     height: 100vh;
     width: 100vw;
 }
@@ -76,7 +78,7 @@ button:hover {
 
 .input-box span {
     padding-left: 1.2rem;
-    color: var(--text-color);
+    color: var(--text-color2);
     font-size: 20px;
 }
 
@@ -86,6 +88,7 @@ input[type="color"] {
     height: 80px;
     border: none;
     border-radius: 50%;
+    transition: transform 0.1s ease-in-out;
 }
 
 input[type='color']::-webkit-color-swatch-wrapper {
@@ -97,7 +100,13 @@ input[type='color']::-webkit-color-swatch {
     border: none;
     border-radius: 50px;
     /* box-shadow: rgba(244, 243, 244, 0.24) 0px 3px 8px; */
-}  
+    transition: all 0.3s;
+} 
+
+input[type="color"]:hover {
+    transform: scale(1.05);
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
 .btn.active {
     background-color: var(--text-color);
