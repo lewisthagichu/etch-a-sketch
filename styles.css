@@ -1,7 +1,7 @@
 :root {
     --bg-color: #DEE7E7;
     --text-color: #3F3F37;
-    --secondary-bg-color: #EBE9E9;
+    --secondary-bg-color: #F9F5FF;
     --text-color2: #EBF7FF;
 }
 
@@ -24,13 +24,13 @@ html {
     text-align: center;
     padding: 2.6rem;
     font-size: 60px;
-    color: linear-gradient(to right, #ECD583, #DEE7E7);
+    color: var(--text-color);
     font-weight: 900;
 }
 
 body {
     
-    background: #4F5453;
+    background: var(--secondary-bg-color);
     height: 100vh;
     width: 100vw;
 }
@@ -45,7 +45,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1.2rem;
 }
 
 .buttons {
@@ -71,14 +71,13 @@ button:hover {
 
 .input-box {
     display: flex;
-    /* justify-content: center; */
     align-items: center;
     border: none;
 }
 
 .input-box span {
     padding-left: 1.2rem;
-    color: var(--text-color2);
+    color: var(--text-color);
     font-size: 20px;
 }
 
@@ -115,29 +114,33 @@ input[type="color"]:hover {
 
 .size-value {
     text-align: center;
+    color: var(--text-color);
 }
 
 #slider {
     width: 100%;
+    margin-top: 10px;
 }
 
 input[type='range'] {
+    appearance: none;
     background-color: var(--secondary-bg-color);
-  }
+}
   
 input[type='range']::-webkit-slider-runnable-track {
     height:10px;
     border: 1px solid black;
     border-radius: 25px;
     background: var(--secondary-bg-color);
+    
 }
   
 input[type='range']::-webkit-slider-thumb {
     appearance: none;
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
-    margin-top: -4px;
+    margin-top: -6px;
     background: var(--text-color);
 }  
 
