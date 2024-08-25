@@ -1,17 +1,37 @@
+@font-face {
+    font-family: NeueMontreal;
+    src: url(font/NeueMontreal-Regular.otf);
+}
+
 :root {
-    --bg-color: #DEE7E7;
-    --text-color: #3F3F37;
-    --secondary-bg-color: #F9F5FF;
-    --text-color2: #EBF7FF;
+    --bg-color: #6A8D92;
+    --text-color: #1c1d20;
+    --text-color-3: #e8e7cb;
+
+
+    --text-size: clamp(16px, 1.2vw, 19px);
 }
 
 * {
-    box-sizing: border-box;
+    box-sizing:border-box;
     margin: 0;
+    padding: 0;
 }
 
-html {
-    position: relative;    
+body {
+    font-family: NeueMontreal, 'sans-serif';
+    font-size: clamp(16px, 1.2vw, 19px);
+}
+
+.main-container {
+    background: var(--bg-color);
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: .4em;
+    overflow: hidden;
 }
 
 .header {
@@ -22,45 +42,47 @@ html {
 
 .title {
     text-align: center;
-    padding: 2.6rem;
-    font-size: 60px;
+    padding: .8em 0;
+    font-size: calc(var(--text-size) * 3);
     color: var(--text-color);
+    color: #e8e7cb;
     font-weight: 900;
 }
 
-body {
-    
-    background: var(--secondary-bg-color);
-    height: 100vh;
-    width: 100vw;
-}
-
-.flex-container {
+.content-container {
     display: flex;
     justify-content: center;
-    gap: 4rem;
+    gap: 4em;
 }
 
 .config {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.2rem;
+    gap: 1.5em;
 }
 
-.buttons {
+.settings {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+}
+
+.buttons,
+.circles {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1.5em;
 }
 
 button {
-    padding: 10px 15px;
+    padding: .6em 0;
     border: 1px solid var(--text-color);
+    border: none;
     border-radius: 5px;
     color: var(--text-color);
-    font-size: 20px;
+    font-size: 1em;
     transition: all .2s;
 }
 
@@ -76,15 +98,13 @@ button:hover {
 }
 
 .input-box span {
-    padding-left: 1.2rem;
+    padding-left: 1em;
     color: var(--text-color);
-    font-size: 20px;
 }
 
 input[type="color"] {
-    /* -webkit-appearance: none; */
-    width: 80px;
-    height: 80px;
+    width: 6em;
+    height: 6em;
     border: none;
     border-radius: 50%;
     transition: transform 0.1s ease-in-out;
@@ -98,7 +118,6 @@ input[type='color']::-webkit-color-swatch-wrapper {
 input[type='color']::-webkit-color-swatch {
     border: none;
     border-radius: 50px;
-    /* box-shadow: rgba(244, 243, 244, 0.24) 0px 3px 8px; */
     transition: all 0.3s;
 } 
 
@@ -119,19 +138,18 @@ input[type="color"]:hover {
 
 #slider {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 1em;
 }
 
 input[type='range'] {
     appearance: none;
-    background-color: var(--secondary-bg-color);
+    background-color: var(--bg-color);
 }
   
 input[type='range']::-webkit-slider-runnable-track {
     height:10px;
-    border: 1px solid black;
+    border: 1px solid var(--text-color);
     border-radius: 25px;
-    background: var(--secondary-bg-color);
     
 }
   
@@ -142,24 +160,195 @@ input[type='range']::-webkit-slider-thumb {
     border-radius: 50%;
     margin-top: -6px;
     background: var(--text-color);
-}  
+} 
+
+/* Firefox */
+input[type='range']::-moz-range-track {
+    height: 10px;
+    border: 1px solid var(--text-color);
+    border-radius: 25px;
+}
+
+input[type='range']::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-top: -6px;
+    background: var(--text-color);
+}
+
+/* For IE and Edge (non-Chromium versions) */
+input[type='range']::-ms-track {
+    height: 10px;
+    border: 1px solid var(--text-color);
+    border-radius: 25px;
+    background: transparent;
+    color: transparent;
+}
+
+input[type='range']::-ms-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--text-color);
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
 
 .board {
-    width: 600px;
-    height: 600px;
+    width: clamp(5em, 40vw, 60em);
+    height: clamp(20em,40vw, 36em);
     display: grid;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
+.square {
+    cursor: pointer;
+}
+
+.togglers {
+    display: flex;
+    gap: 2em;
+}
+
+footer {    
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    font-size: 20px;
-    color: var(--text-color);
+    gap: .2em;
+    margin: 1em 0;
+    font-size: var(--text-size);
+    color: var(--text-color-3);
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color-3);
+}
+
+
+
+/* //toggle */
+.toggle {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.toggle-switch {
+  display: inline-block;
+  background: var(--text-color);
+  border-radius: 16px;
+  width: 58px;
+  height: 32px;
+  position: relative;
+  vertical-align: middle;
+  transition: background 0.25s;
+}
+.toggle-switch:before, .toggle-switch:after {
+  content: "";
+}
+.toggle-switch:before {
+  display: block;
+  background: linear-gradient(to bottom, #ffffff 0%, #eeeeee 100%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: left 0.25s;
+}
+.toggle:hover .toggle-switch:before {
+  background: linear-gradient(to bottom, #ffffff 0%, #ffffff 100%);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5);
+}
+.toggle-checkbox:checked + .toggle-switch {
+  background: var(--text-color-3);
+}
+.toggle-checkbox:checked + .toggle-switch:before {
+  left: 30px;
+}
+
+.toggle-checkbox {
+  position: absolute;
+  visibility: hidden;
+}
+
+.toggle-label {
+  margin-left: 5px;
+  position: relative;
+  top: 2px;
+}
+
+@media screen and (max-width: 600px) {
+    .title {
+        padding: .4em 0;
+    }
+    .content-container {
+        position: relative;
+        top: -8vh;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5em;
+    }
+
+    .config {
+        order: 2;
+    }
+
+    .circles {
+        flex-direction: row ;
+    }
+
+    .buttons {
+        flex-direction: row;
+        justify-content: center;
+        gap: 1em;
+    }
+
+    button {
+        width: 25%;
+        font-size: .6em;
+        height: 2.4em;
+        padding: 0 2em;
+    }
+
+    input[type="color"] {
+        width: 3em;
+        height: 3em;
+    
+    }
+
+    .slider-section {
+        display: flex;
+        flex-direction: column;
+        gap: .5em;
+    }
+
+    #slider {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .content  {
+        order: 1;
+
+    }
+
+    .board {
+        width: 80vw;
+        height: 80vw;
+    }
+
+    .hover {
+        display: none;
+    }
+    
 }

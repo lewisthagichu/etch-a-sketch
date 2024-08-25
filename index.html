@@ -3,53 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Developed by Lewis Thagichu">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="favicon.png">
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="styles.css">
-    <title>Etch A Sketch</title>
+    <title>SketchPad</title>
 </head>
 <body>
-    <header class="header">
-        <h1 class="title">Etch-A-Sketch</h1>        
-    </header>    
+    <div class="main-container">
 
-    <main class="flex-container">
-        <div class="config">
-            <div class="buttons">
-                <div class="input-box">
-                    <input class="btn" id="colorPicker" type="color" value="#fff">
-                    <span>Pen Color</span>
+        <header class="header">
+            <h1 class="title">SketchPad</h1>        
+        </header>    
+    
+        <main class="content-container">
+            <div class="config">
+                <div class="settings">
+                    <div class="circles">
+                        <div class="input-box">
+                            <input class="btn" id="colorPicker" type="color" value="#000000">
+                            <span>Pen Color</span>
+                        </div>
+                        <div class="input-box">
+                            <input class="btn" id="bgColorPicker" type="color" value="#ffffff">
+                            <span>Background Color</span>
+                        </div>
+                    </div>
+                    <div class="buttons">
+
+                   
+                        <button class=" active btn" id="normalBtn">Normal</button>
+                        <button class="btn" id="rainbowBtn">Rainbow</button>
+                        <button class="btn" id="eraserBtn">Eraser</button>                
+                        <button onclick="resetBoard()">Reset</button>
+
+                    </div>
                 </div>
-                <div class="input-box">
-                    <input class="btn" id="bgColorPicker" type="color" value="#ffffff">
-                    <span>Background Color</span>
+                <div class="slider-section">
+                    <div id="sizeValue" class="size-value">Grid size: 16 x 16</div>
+                    <input id="slider" type="range" value="16" min="1" max="100"/>
                 </div>
-                <button class="btn" id="rainbowBtn">Rainbow</button>
-                <button class="btn" id="eraserBtn">Eraser</button>                
-                <button onclick="resetBoard()">Reset</button>
             </div>
-            <div class="slider-section">
-                <div id="sizeValue" class="size-value">Grid size: 16 x 16</div>
-                <input id="slider" type="range" value="16" min="1" max="100"/>
+            <div class="content">
+                <div class="board"></div>  
+                <div class="togglers">
+                    <label  class="toggle hover">
+                        <input id="hover" class="toggle-checkbox" type="checkbox">
+                        <div class="toggle-switch"></div>
+                        <span class="toggle-label">Hover Drawing</span>
+                    </label>
+                    
+                    
+                    <label  class="toggle">
+                        <input id="lines" class="toggle-checkbox" type="checkbox" checked>
+                        <div class="toggle-switch"></div>
+                        <span class="toggle-label">Lines</span>
+                    </label>
+                </div>         
             </div>
-        </div>
-        <div class="content">
-            <div class="board"></div>           
-        </div>
-    </main>
-    <footer class="footer">
-        <p>
-          Copyright ©
-          <script>
-            document.write(new Date().getFullYear())
-          </script>
-          lewisthagichu
-        </p>
-        <a href="https://github.com/lewisthagichu" target="_blank">
-          <i class="fab fa-github"></i
-        ></a>
-    </footer>
+        </main>
+        <footer class="footer">
+            <p>
+              Copyright ©2023
+            </p>
+            <a href="https://github.com/lewisthagichu" target="_blank">
+              lewisthagichu</a>
+        </footer>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

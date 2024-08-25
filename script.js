@@ -1,18 +1,22 @@
-const DEFAULT_BG_COLOR = "#FFFFFF";
-const DEFAULT_COLOR = "#333333";
+const DEFAULT_BG_COLOR = '#FFFFFF';
+const DEFAULT_COLOR = '#000000';
 const DEFAULT_SIZE = 16;
 
 let currentSize = DEFAULT_SIZE;
 let currentColor = DEFAULT_COLOR;
+let normalColor = DEFAULT_COLOR;
 let bgColor = DEFAULT_BG_COLOR;
 
-const buttons = document.querySelectorAll(".btn");
-const slider = document.getElementById("slider");
-const sizeValue = document.getElementById("sizeValue");
-const colorPicker = document.getElementById("colorPicker");
-const bgColorPicker = document.getElementById("bgColorPicker");
-const rainbowBtn = document.getElementById("rainbowBtn");
-const eraserBtn = document.getElementById("eraserBtn");
+const buttons = document.querySelectorAll('.btn');
+const slider = document.getElementById('slider');
+const sizeValue = document.getElementById('sizeValue');
+const colorPicker = document.getElementById('colorPicker');
+const bgColorPicker = document.getElementById('bgColorPicker');
+const rainbowBtn = document.getElementById('rainbowBtn');
+const normalBtn = document.getElementById('normalBtn');
+const eraserBtn = document.getElementById('eraserBtn');
+const toggleLines = document.getElementById('lines');
+const toggleHover = document.getElementById('hover');
 
 slider.onmousemove = (e) => {
   updateSizeValue(e.target.value);
@@ -22,18 +26,24 @@ slider.onchange = (e) => {
 };
 colorPicker.oninput = (e) => {
   changeColor(e.target.value);
+  normalBtn.classList.add('active');
 };
 bgColorPicker.oninput = (e) => {
   setBackgroundColor(e.target.value);
 };
+normalBtn.onclick = () => {
+  changeColor(normalColor);
+};
 rainbowBtn.onclick = () => {
-  changeColor("rainbow");
+  changeColor('rainbow');
 };
 eraserBtn.onclick = () => {
-  changeColor("#ffffff");
+  changeColor(bgColor, 'eraser');
 };
 
-//function to set new board size
+toggleLines.addEventListener('change', toggleLinesEffect);
+toggleHover.addEventListener('change', toggleHoverEffect);
+
 function setCurrentSize(newSize) {
   currentSize = newSize;
 }
@@ -43,83 +53,96 @@ document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
 function populateBoard(size) {
-  let board = document.querySelector(".board");
-  let squares = board.querySelectorAll("div");
+  let board = document.querySelector('.board');
+  let squares = board.querySelectorAll('div');
   squares.forEach((div) => div.remove());
   board.style.gridTemplateColumns = `repeat(${size}, 1fr)`;
   board.style.gridTemplateRows = `repeat(${size}, 1fr)`;
 
   let amount = size * size;
   for (let i = 0; i < amount; i++) {
-    let square = document.createElement("div");
-    square.addEventListener("mousedown", colorSquare);
-    square.addEventListener("mouseover", colorSquare);
+    let square = document.createElement('div');
+    square.className = 'square';
+    square.addEventListener('click', colorSquare);
     square.style.backgroundColor = bgColor;
-    // square.style.border = "0.2px solid black";
-    board.insertAdjacentElement("beforeend", square);
+    if (toggleLines.checked) {
+      square.style.border = '1px solid black';
+    } else {
+      square.style.border = 'none';
+    }
+    board.insertAdjacentElement('beforeend', square);
   }
 }
 
-// function to reload the board
 function reloadBoard() {
   populateBoard(currentSize);
 }
 
-//function to update the sizeValue div
 function updateSizeValue(value) {
   sizeValue.innerHTML = `Grid size: ${value} x ${value}`;
 }
 
-//function to adjust number of squares
 function changeSize(value) {
   setCurrentSize(value);
   reloadBoard();
 }
 
-//function to determine color of each square
 function colorSquare(e) {
-  if (e.type === "mouseover" && !mouseDown) {
-    return;
-  } else {
-    e.preventDefault();
-  }
+  if (e.type === 'mouseover' && !mouseDown) return;
 
-  if (currentColor == "rainbow") {
-    this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+  if (currentColor === 'rainbow') {
+    e.target.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
   } else {
-    this.style.backgroundColor = currentColor;
+    e.target.style.backgroundColor = currentColor;
   }
 }
 
-//function to change color of squares
-function changeColor(choice) {
+function changeColor(choice, eraser = null) {
   currentColor = choice;
+  if (choice !== 'rainbow' && !eraser) {
+    normalColor = choice;
+  }
 }
 
-//function to set background color
 function setBackgroundColor(choice) {
   bgColor = choice;
   reloadBoard();
 }
 
-//function to reset board
 function resetBoard() {
-  let board = document.querySelector(".board");
-  let squares = board.querySelectorAll("div");
-  squares.forEach((div) => (div.style.backgroundColor = "white"));
+  let board = document.querySelector('.board');
+  let squares = board.querySelectorAll('div');
+  squares.forEach((div) => (div.style.backgroundColor = bgColor));
 }
 
-// Define the click event handler function
 function handleClick(event) {
-  // Remove the class from all buttons
-  buttons.forEach((button) => button.classList.remove("active"));
-
-  // Add the class to the clicked button
-  event.target.classList.add("active");
+  buttons.forEach((button) => button.classList.remove('active'));
+  event.target.classList.add('active');
 }
 
-// Attach the click event listener to each button
-buttons.forEach((button) => button.addEventListener("click", handleClick));
+buttons.forEach((button) => button.addEventListener('click', handleClick));
+
+function toggleLinesEffect() {
+  let squares = document.querySelectorAll('.square');
+  squares.forEach((square) => {
+    if (toggleLines.checked) {
+      square.style.border = `1px solid ${currentColor}`;
+    } else {
+      square.style.border = 'none';
+    }
+  });
+}
+
+function toggleHoverEffect() {
+  let squares = document.querySelectorAll('.square');
+  squares.forEach((square) => {
+    if (toggleHover.checked) {
+      square.addEventListener('mouseover', colorSquare);
+    } else {
+      square.removeEventListener('mouseover', colorSquare);
+    }
+  });
+}
 
 window.onload = () => {
   populateBoard(currentSize);
